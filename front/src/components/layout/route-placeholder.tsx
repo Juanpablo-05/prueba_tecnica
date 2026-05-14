@@ -1,9 +1,3 @@
-'use client';
-
-import Link from "next/link";
-import { useAuth } from "@/providers/auth-provider";
-import { ROUTES } from "@/lib/routes";
-import { useRouter } from "next/navigation";
 
 type RoutePlaceholderProps = {
   role: "admin" | "doctor" | "patient";
@@ -25,17 +19,9 @@ export function RoutePlaceholder({
   bullets,
 }: RoutePlaceholderProps) {
 
-  const { logout } = useAuth();
-  const router = useRouter();
-
-  const logoutButton = () => {
-    logout();
-    router.replace(ROUTES.login);
-  };
-
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 px-6 py-10 lg:px-10">
-      <section className="glass-panel w-full rounded-[32px] p-8 lg:p-10">
+      <section className="glass-panel w-full rounded-4xl p-8 lg:p-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="section-label">Ruta Base</p>
@@ -61,23 +47,9 @@ export function RoutePlaceholder({
               className="rounded-3xl border border-slate-200 bg-white/80 p-5"
             >
               <p className="text-sm leading-7 text-slate-700">{bullet}</p>
+              
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href={ROUTES.home}
-            className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-          >
-            Volver al inicio
-          </Link>
-          <button
-            className="rounded-full border border-slate-300 bg-white/75 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-white"
-            onClick={logoutButton}
-          >
-            cerrar sesion
-          </button>
         </div>
       </section>
     </main>

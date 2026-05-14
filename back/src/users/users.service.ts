@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, User } from '@prisma/client';
+import { Prisma, Role, User } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -15,6 +15,24 @@ export class UsersService {
   findById(id: string) {
     return this.prisma.user.findUnique({
       where: { id }
+    });
+  }
+
+  listPatients() {
+    return this.prisma.user.findMany({
+      where: {
+        role: Role.PATIENT,
+        isActive: true,
+      },
+      select: {
+        id: true,
+        fullName: true,
+        email: true,
+        documentNumber: true,
+      },
+      orderBy: {
+        fullName: 'asc',
+      },
     });
   }
 

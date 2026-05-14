@@ -10,7 +10,7 @@ import { Type } from 'class-transformer';
 
 class PrescriptionItemInputDto {
   @IsString()
-  name: string;
+  name!: string;
 
   @IsOptional()
   @IsString()
@@ -27,7 +27,7 @@ class PrescriptionItemInputDto {
 
 export class CreatePrescriptionDto {
   @IsString()
-  patientId: string;
+  patientId!: string;
 
   @IsOptional()
   @IsString()
@@ -37,5 +37,6 @@ export class CreatePrescriptionDto {
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
   @Type(() => PrescriptionItemInputDto)
-  items: PrescriptionItemInputDto[];
+  items!: PrescriptionItemInputDto[];
 }
+

@@ -1,6 +1,5 @@
 "use client";
 
-import { isAxiosError } from "axios";
 import {
   createContext,
   useCallback,
@@ -11,6 +10,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { api, setApiAccessToken } from "@/lib/api";
+import { getApiErrorMessage } from "@/lib/errors";
 import {
   clearStoredSession,
   getStoredAccessToken,
@@ -20,40 +20,13 @@ import {
 } from "@/lib/auth/session";
 import type { AuthSessionResponse, UserProfile } from "@/types/auth";
 
-type AuthStatus = "loading" | "authenticated" | "anonymous";
-
-type AuthContextValue = {
-  accessToken: string | null;
-  isAuthenticated: boolean;
-  login: (credentials: { email: string; password: string }) => Promise<UserProfile>;
-  logout: () => void;
-  refreshSession: (options?: { silent?: boolean }) => Promise<boolean>;
-  refreshToken: string | null;
-  status: AuthStatus;
-  user: UserProfile | null;
-};
-
-type AuthProviderProps = {
-  children: React.ReactNode;
-};
+import type {
+  AuthContextValue,
+  AuthProviderProps,
+  AuthStatus,
+} from "@/types/ProviderAuthTypes";
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
-
-function getErrorMessage(error: unknown) {
-  if (isAxiosError(error)) {
-    const message = error.response?.data?.message;
-
-    if (typeof message === "string") {
-      return message;
-    }
-  }
-
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  return "No fue posible completar la autenticacion.";
-}
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [status, setStatus] = useState<AuthStatus>("loading");
@@ -97,7 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } catch (error) {
       clearSession();
       if (!options?.silent) {
-        toast.error(getErrorMessage(error));
+        toast.error(getApiErrorMessage(error, "No fue posible completar la autenticacion."));
       }
       return false;
     }
@@ -153,7 +126,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         applySession(response.data);
         return response.data.user;
       } catch (error) {
-        throw new Error(getErrorMessage(error));
+        throw new Error(getApiErrorMessage(error, "No fue posible completar la autenticacion."));
       }
     },
     [applySession],

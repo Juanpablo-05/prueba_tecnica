@@ -592,7 +592,7 @@ export class ConsumePrescriptionDto {
 - Crear decorador `@Roles()`
 - Proteger rutas por rol
 
-### Fase 4. Backend del core de negocio
+### Fase 4. Backend del core de negocio ✔
 
 - Módulo de prescripciones
 - Endpoints para médico:
@@ -608,7 +608,7 @@ export class ConsumePrescriptionDto {
   - listar prescripciones globales
   - consultar métricas
 
-### Fase 5. PDF de prescripción
+### Fase 5. PDF de prescripción ✔
 
 - Generar PDF desde backend
 - Incluir:
@@ -621,18 +621,18 @@ export class ConsumePrescriptionDto {
   - paciente solo descarga las suyas
   - admin puede acceder si decides habilitarlo
 
-### Fase 6. Frontend de autenticación
+### Fase 6. Frontend de autenticación ✔
 
-- Crear `/login`✔
-- Guardar tokens y perfil✔
-- Crear lógica de sesión✔
+- Crear `/login`
+- Guardar tokens y perfil
+- Crear lógica de sesión
 - Redirigir según rol:
   - `admin`
   - `doctor`
   - `patient`
 - Proteger rutas en frontend
 
-### Fase 7. Frontend del médico
+### Fase 7. Frontend del médico ✔
 
 - `/doctor/prescriptions`
   - tabla o cards
@@ -644,7 +644,7 @@ export class ConsumePrescriptionDto {
 - `/doctor/prescriptions/[id]`
   - detalle de la prescripción
 
-### Fase 8. Frontend del paciente
+### Fase 8. Frontend del paciente ✔
 
 - `/patient/prescriptions`
   - listado
@@ -654,7 +654,7 @@ export class ConsumePrescriptionDto {
 - `/patient/prescriptions/[id]`
   - detalle
 
-### Fase 9. Frontend del admin
+### Fase 9. Frontend del admin ✔
 
 - `/admin/dashboard`
 - Tarjetas de métricas
@@ -707,13 +707,13 @@ Si el tiempo aprieta, este es el orden que más conviene:
 - [✔] Login funcionando
 - [✔] Refresh token funcionando
 - [✔] Guards y roles funcionando
-- [] Médico crea prescripción
-- [] Paciente lista sus prescripciones
-- [] Paciente marca como consumida
-- [] Paciente descarga PDF
-- [] Admin visualiza métricas
-- [] Frontend responsive básico
-- [] README listo
+- [✔] Médico crea prescripción
+- [✔] Paciente lista sus prescripciones
+- [✔] Paciente marca como consumida
+- [✔] Paciente descarga PDF
+- [✔] Admin visualiza métricas
+- [✔] Frontend responsive básico
+- [✔] README listo
 
 ### Recomendación práctica
 

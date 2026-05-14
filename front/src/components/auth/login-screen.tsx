@@ -3,21 +3,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { getApiErrorMessage } from "@/lib/errors";
 import { useAuth } from "@/providers/auth-provider";
 import { getRouteByRole, ROUTES } from "@/lib/routes";
 
 const loginSchema = z.object({
   email: z.email("Ingresa un correo valido."),
-  password: z.string().min(6, "La contrasena debe tener al menos 6 caracteres."),
+  password: z.string().min(5, "La contrasena debe tener al menos 5 caracteres."),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export function LoginScreen() {
+
+  const [show, setShow] = useState(false);
   const router = useRouter();
   const { login, status, user } = useAuth();
   const {
@@ -27,7 +30,7 @@ export function LoginScreen() {
   } = useForm<LoginFormValues>({
     defaultValues: {
       email: "dr@test.com",
-      password: "dr123456",
+      password: "dr123",
     },
     resolver: zodResolver(loginSchema),
   });
@@ -44,12 +47,7 @@ export function LoginScreen() {
       toast.success(`Bienvenido, ${authenticatedUser.fullName}.`);
       router.replace(getRouteByRole(authenticatedUser.role));
     } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : "No fue posible iniciar sesion.";
-
-      toast.error(message);
+      toast.error(getApiErrorMessage(error, "No fue posible iniciar sesion."));
     }
   });
 
@@ -58,7 +56,7 @@ export function LoginScreen() {
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 items-center px-6 py-10 lg:px-10">
       <div className="grid w-full gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <section className="glass-panel rounded-[32px] p-8 lg:p-10">
+        <section className="glass-panel rounded-4xl p-8 lg:p-10">
           <p className="section-label">Acceso seguro</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900">
             Inicia sesion para entrar al sistema
@@ -88,16 +86,26 @@ export function LoginScreen() {
             <label className="grid gap-2 text-sm font-medium text-slate-700">
               Contrasena
               <input
-                type="password"
+                type={show ? "text" : "password"}
                 placeholder="********"
                 className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 outline-none transition focus:border-slate-400"
                 {...register("password")}
+                
               />
               {errors.password ? (
                 <span className="text-xs font-medium text-rose-600">
                   {errors.password.message}
                 </span>
               ) : null}
+              <button
+                type="button"
+                className=" absolute right-15 top-[75%] translate-y-[-50%] text-sm text-slate-500 hover:text-slate-700 cursor-pointer"
+                onClick={ () => setShow(!show)
+                }
+              >
+                {show ? "Ocultar" : "Mostrar"}
+              </button>
+
             </label>
 
             <button
@@ -114,7 +122,7 @@ export function LoginScreen() {
           </form>
         </section>
 
-        <aside className="glass-panel rounded-[32px] p-8">
+        <aside className="glass-panel rounded-4xl p-8">
           <p className="section-label">Credenciales de prueba</p>
           <div className="mt-5 grid gap-3">
             <div className="rounded-2xl border border-slate-200 bg-white/75 p-4">
