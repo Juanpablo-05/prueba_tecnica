@@ -96,11 +96,12 @@ npm run dev
 - Frontend: `http://localhost:3000`
 - API REST: `http://localhost:3001/api`
 - Swagger: `http://localhost:3001/docs`
+- PostMan Collention: `https://almeidajuanpablo-05-3614442.postman.co/workspace/Juan-Pablo-Almeida's-Workspace~46b80fbe-9fa3-4cc1-8e3f-bc9e933c4102/collection/54839067-65c78089-5825-4700-bec1-b576efd95dde?action=share&source=copy-link&creator=54839067`
 
 ## Credenciales de prueba
 
 - Admin: `admin@test.com / admin123`
-- Doctor: `dr@test.com / dr123`
+- Doctor: `dr@test.com / dr123456`
 - Paciente: `patient@test.com / patient123`
 
 El seed crea 6 prescripciones de ejemplo mezclando estados `PENDING` y `CONSUMED`.
