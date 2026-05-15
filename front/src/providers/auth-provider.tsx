@@ -19,6 +19,7 @@ import {
   persistSession,
 } from "@/lib/auth/session";
 import type { AuthSessionResponse, UserProfile } from "@/types/auth";
+import type { AdminCreateUserRequest } from "@/types/admin";
 
 import type {
   AuthContextValue,
@@ -137,6 +138,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     toast.success("Sesion cerrada.");
   }, [clearSession]);
 
+  const createAccountUser = useCallback(async (userData: AdminCreateUserRequest) => {
+    const response = await api.post<AuthSessionResponse>("/admin/create/user", userData);
+    return response.data.user;
+  }, []);
+
   const value = useMemo<AuthContextValue>(
     () => ({
       accessToken,
@@ -144,11 +150,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       login,
       logout,
       refreshSession,
+      createAccountUser,
       refreshToken,
       status,
       user,
     }),
-    [accessToken, login, logout, refreshSession, refreshToken, status, user],
+    [accessToken, login, logout, refreshSession, createAccountUser, refreshToken, status, user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

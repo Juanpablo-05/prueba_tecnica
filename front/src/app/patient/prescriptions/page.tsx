@@ -97,6 +97,10 @@ export default function PatientPrescriptionsPage() {
     );
   };
 
+  const clearFilters = () => {
+    router.replace(ROUTES.patientPrescriptions);
+  };
+
   return (
     <PageShell
       eyebrow="Paciente"
@@ -144,12 +148,22 @@ export default function PatientPrescriptionsPage() {
             />
           </label>
 
-          <button
-            type="submit"
-            className="rounded-2xl border border-slate-300 bg-white/85 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-white"
-          >
-            Aplicar filtros
-          </button>
+          <div className=" flex items-end justify-end">
+            <button
+              type="submit"
+              className="rounded-2xl border border-slate-300 bg-white/85 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-white"
+            >
+              Aplicar filtros
+            </button>
+
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="ml-3 rounded-2xl border border-slate-300 bg-white/85 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-white"
+            >
+              Limpiar filtros
+            </button>
+          </div>
         </form>
       </section>
 

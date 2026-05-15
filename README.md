@@ -165,4 +165,3 @@ npm run test
 - Frontend: pendiente de publicar
 - Backend: pendiente de publicar
 
-Si vas a entregar el proyecto con deploy, agrega esas URLs en esta misma seccion.

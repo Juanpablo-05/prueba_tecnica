@@ -23,3 +23,13 @@ export type AdminMetricsResponse = {
     email: string | null;
   }>;
 };
+
+export type AdminCreateUserRequest = {
+  fullName: string;
+  document: string;
+  email: string;
+  password: string;
+  role: "DOCTOR" | "PATIENT";
+  isActive: boolean;
+  medicalLicenseNumber: string | "N/A";
+};

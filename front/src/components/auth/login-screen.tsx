@@ -30,7 +30,7 @@ export function LoginScreen() {
   } = useForm<LoginFormValues>({
     defaultValues: {
       email: "dr@test.com",
-      password: "dr123",
+      password: "dr123456",
     },
     resolver: zodResolver(loginSchema),
   });

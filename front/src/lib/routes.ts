@@ -2,6 +2,7 @@ import type { UserRole } from "@/types/auth";
 
 export const ROUTES = {
   adminDashboard: "/admin/dashboard",
+  newUser: "/admin/dashboard/new-user",
   doctorPrescriptions: "/doctor/prescriptions",
   home: "/",
   login: "/login",

@@ -22,7 +22,6 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { StatCard } from "@/components/ui/stat-card";
 import { getAdminMetrics } from "@/lib/admin";
 import { getApiErrorMessage } from "@/lib/errors";
-import { formatDateOnly } from "@/lib/format";
 import { listAdminPrescriptions } from "@/lib/prescriptions";
 import { buildSearchString } from "@/lib/query-string";
 import { ROUTES } from "@/lib/routes";
@@ -125,8 +124,15 @@ export default function AdminDashboardPage() {
             >
               Limpiar filtro
             </button>
+
+            <button type="button" onClick={() => router.push(ROUTES.newUser)} className="ml-auto rounded-2xl bg-green-600 px-5 py-3 text-sm font-semibold text-white hover:bg-green-700 transition-colors">
+              Crear usuario
+              
+            </button>
           </section>
         </form>
+
+      
       </section>
 
       {metricsQuery.isLoading ? (
@@ -327,12 +333,7 @@ export default function AdminDashboardPage() {
                   <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
                     Ultimas prescripciones del sistema
                   </h2>
-                </div>
-
-                <p className="text-sm text-slate-600">
-                  Rango: {formatDateOnly(metricsQuery.data.filters.from)} a{" "}
-                  {formatDateOnly(metricsQuery.data.filters.to)}
-                </p>
+                </div>  
               </div>
 
               {prescriptionsQuery.isLoading ? (

@@ -554,7 +554,7 @@ export class ConsumePrescriptionDto {
 
 ## 17. Plan de ejecución, paso a paso
 
-### Fase 1. Setup del proyecto - ✔
+### Fase 1. Setup del proyecto 
  
 - Inicializar:
   - backend con `NestJS`
@@ -566,7 +566,7 @@ export class ConsumePrescriptionDto {
   - conexión a PostgreSQL
   - `Prisma`
 
-### Fase 2. Modelo de datos y Prisma ✔
+### Fase 2. Modelo de datos y Prisma 
 
 - Definir modelos base:
   - `User`
@@ -579,7 +579,7 @@ export class ConsumePrescriptionDto {
 - Crear relaciones, índices y migración inicial
 - Preparar `seed.ts` con usuarios y prescripciones de ejemplo
 
-### Fase 3. Autenticación y autorización ✔
+### Fase 3. Autenticación y autorización 
 
 - Implementar `login`
 - Implementar `refresh token`
@@ -592,7 +592,7 @@ export class ConsumePrescriptionDto {
 - Crear decorador `@Roles()`
 - Proteger rutas por rol
 
-### Fase 4. Backend del core de negocio ✔
+### Fase 4. Backend del core de negocio 
 
 - Módulo de prescripciones
 - Endpoints para médico:
@@ -608,7 +608,7 @@ export class ConsumePrescriptionDto {
   - listar prescripciones globales
   - consultar métricas
 
-### Fase 5. PDF de prescripción ✔
+### Fase 5. PDF de prescripción 
 
 - Generar PDF desde backend
 - Incluir:
@@ -621,7 +621,7 @@ export class ConsumePrescriptionDto {
   - paciente solo descarga las suyas
   - admin puede acceder si decides habilitarlo
 
-### Fase 6. Frontend de autenticación ✔
+### Fase 6. Frontend de autenticación 
 
 - Crear `/login`
 - Guardar tokens y perfil
@@ -632,7 +632,7 @@ export class ConsumePrescriptionDto {
   - `patient`
 - Proteger rutas en frontend
 
-### Fase 7. Frontend del médico ✔
+### Fase 7. Frontend del médico 
 
 - `/doctor/prescriptions`
   - tabla o cards
@@ -644,7 +644,7 @@ export class ConsumePrescriptionDto {
 - `/doctor/prescriptions/[id]`
   - detalle de la prescripción
 
-### Fase 8. Frontend del paciente ✔
+### Fase 8. Frontend del paciente 
 
 - `/patient/prescriptions`
   - listado
@@ -654,7 +654,7 @@ export class ConsumePrescriptionDto {
 - `/patient/prescriptions/[id]`
   - detalle
 
-### Fase 9. Frontend del admin ✔
+### Fase 9. Frontend del admin 
 
 - `/admin/dashboard`
 - Tarjetas de métricas
@@ -685,18 +685,6 @@ export class ConsumePrescriptionDto {
   - credenciales
   - URLs desplegadas si alcanzas a publicar
 
-### Prioridad real para pasar bien la prueba
-
-Si el tiempo aprieta, este es el orden que más conviene:
-
-1. `Auth + RBAC`
-2. `Prisma schema + migración + seed`
-3. `Crear prescripción`
-4. `Paciente ve, consume y descarga PDF`
-5. `Métricas de admin`
-6. `Filtros, paginación y orden`
-7. `Testing mínimo`
-8. `Plus opcionales`
 
 ### Checklist de avance rápido
 
@@ -715,16 +703,3 @@ Si el tiempo aprieta, este es el orden que más conviene:
 - [✔] Frontend responsive básico
 - [✔] README listo
 
-### Recomendación práctica
-
-No intentes hacer los plus demasiado temprano.
-Primero deja impecable el flujo principal:
-
-1. Login
-2. Crear prescripción
-3. Ver prescripción
-4. Consumir prescripción
-5. Descargar PDF
-6. Métricas
-
-Cuando eso esté estable, ahí sí vale la pena sumar extras.

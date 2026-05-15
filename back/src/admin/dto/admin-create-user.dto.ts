@@ -38,5 +38,5 @@ export class AdminCreateUserDto {
 
   @IsOptional()
   @IsString()
-  medicalLicenseNumber?: string | "n/a";
+  medicalLicenseNumber?: string | "N/A";
 }
